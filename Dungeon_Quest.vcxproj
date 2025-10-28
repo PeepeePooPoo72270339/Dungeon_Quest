@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\SDL3_image-3.2.4;C:\SDL3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\SDL3_image-3.2.4\include;C:\SDL3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\SDL3_image-3.2.4\lib\x64;C:\SDL3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -132,7 +132,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameCharacter.cpp" />
     <ClCompile Include="JMC_SDLStarter.cpp" />
+    <ClCompile Include="Pickup.cpp" />
+    <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameCharacter.h" />
+    <ClInclude Include="Pickup.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
