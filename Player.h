@@ -9,9 +9,9 @@ class Player :
 
       void MoveDown(float tileSize);
 
-      void MoveLeft();
+      void MoveLeft(float tileSize);
  
-      void MoveRight();
+      void MoveRight(float tileSize);
 
 };
 

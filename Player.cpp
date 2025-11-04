@@ -9,20 +9,20 @@ void Player::MoveUp(float tileSize)
 
 void Player::MoveDown(float tileSize)
 {
-	Rect.y -= tileSize;
+	Rect.y += tileSize;
 
 
 }
 
-void Player::MoveLeft()
+void Player::MoveLeft(float tileSize)
 {
-
+	Rect.x -= tileSize;
 
 }
 
-void Player::MoveRight()
+void Player::MoveRight(float tileSize)
 {
-
+	Rect.x += tileSize;
 
 
 

@@ -14,16 +14,16 @@ const int GridSizeY = 10;
 const float TileSize = resY / GridSizeX;
 
 //bmp file for player png
-static const char* heroPath = "Textures/Hero_no_sword.png";
+
 //texture
-static SDL_Texture* heroTexture;
+
 //global tile sizes
 static const int TileWidth = resX / 10;
 static const int TileHeight = resY / 10;
 static const Player* player;
 
 //The hero rectangle
-static SDL_FRect heroRect{ 0, 0, TileWidth, TileHeight };
+
 //clamp the height and width
 
 
@@ -84,11 +84,11 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         }
         if (event->key.scancode == SDL_SCANCODE_A)
         {
-            heroRect.x -= TileWidth;
+            Game->Hero->MoveLeft(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_D)
         {
-            heroRect.x += TileWidth;
+            Game->Hero->MoveRight(TileSize);
         }
 
     }
@@ -126,7 +126,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
 
 
     }
-    SDL_RenderTexture(renderer, heroTexture, NULL, &heroRect);
+    SDL_RenderTexture(renderer, Game->Hero->Texture, NULL, &Game->Hero->Rect);
     // should fetch every single game object and render them depending on sprite
 
 
