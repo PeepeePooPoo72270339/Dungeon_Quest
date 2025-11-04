@@ -27,3 +27,5 @@ void Player::MoveRight(float tileSize)
 
 
 }
+
+//Maybe add some player customization for the player

@@ -28,7 +28,7 @@ void DungeonGame::LoadTextures(SDL_Renderer* renderer)
 
 }
 
-void DungeonGame::LoadRoom(const char* file)
+void DungeonGame::LoadRoom(const char* file)// parse the BMP file into here
 {
 	SDL_Surface* surface = SDL_LoadBMP(file);
 	const SDL_PixelFormatDetails* pixelDetails = SDL_GetPixelFormatDetails(surface->format);
@@ -37,14 +37,14 @@ void DungeonGame::LoadRoom(const char* file)
 
 	for (int y = 0; y < surface->h; y++) 
 	{
-		for (int x = 0; x < surface->w; x++) 
+		for (int x = 0; x < surface->w; x++)
 		{
-			Uint8* pixel = static_cast<Uint8*>(surface ->pixels) + y * surface ->pitch + x * bpp;
+			Uint8* pixel = static_cast<Uint8*>(surface->pixels) + y * surface->pitch + x * bpp;
 			SDL_GetRGB(*reinterpret_cast<Uint32*>(pixel), pixelDetails, NULL, &col.r, &col.g, &col.b); // gets RGB value of pixels to be interpreted by game
 			//if Rgb value = black, create tile player can't walk on, if white, create one they can walk on
-		
-		
-		}
+			this->Tiles[x][y].Configure(col, x, y, tileSizeX, //getarray of textures);
+
+		};
 	
 
 
