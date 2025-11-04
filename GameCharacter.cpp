@@ -55,4 +55,5 @@ bool GameCharacter::GetIsAlive()
 SDL_FRect* GameCharacter::GetRect()
 {
 	return nullptr;
+	//set
 }

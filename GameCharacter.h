@@ -13,7 +13,7 @@ public:
 	virtual bool CanMoveBetweenRooms();
 	bool GetIsAlive();
 	SDL_FRect* GetRect();
-	SDL_FRect rect;
+	SDL_FRect Rect;
 	SDL_Texture* Texture;
 
 

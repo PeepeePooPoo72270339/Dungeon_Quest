@@ -3,14 +3,15 @@
 class Player :
     public GameCharacter
 {
+ public:
 
-    virtual void MoveUp();
+      void MoveUp(float tileSize);
 
-    virtual void MoveDown();
+      void MoveDown(float tileSize);
 
-    virtual void MoveLeft();
-
-    virtual void MoveRight();
+      void MoveLeft();
+ 
+      void MoveRight();
 
 };
 

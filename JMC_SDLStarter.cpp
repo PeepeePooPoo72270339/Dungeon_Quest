@@ -76,11 +76,11 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         // keyboard events    
         if (event->key.scancode == SDL_SCANCODE_W)
         {
-            Game->Hero->rect.y -= TileHeight;
+            Game->Hero->MoveUp(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_S)
         {
-            heroRect.y += TileHeight;
+            Game->Hero->MoveDown(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_A)
         {
@@ -111,8 +111,23 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     SDL_RenderClear(renderer);  /* start with a blank canvas. */
 
     // Your Update code goes here.
-    SDL_RenderTexture(renderer, heroTexture, NULL, &heroRect);
+   
+    //Draw the tiles here
+    for (int x = 0; x < GridSizeX; x++) 
+    {
+        for (int y = 0; y < GridSizeY; y++) 
+        {
+            SDL_RenderTexture(renderer, Game->Tiles[x][y].Texture, NULL, &Game->Tiles[x][y].Rect);
+        
 
+
+        }
+    
+
+
+    }
+    SDL_RenderTexture(renderer, heroTexture, NULL, &heroRect);
+    // should fetch every single game object and render them depending on sprite
 
 
     SDL_RenderPresent(renderer);  /* put it all on the screen! */

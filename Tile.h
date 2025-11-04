@@ -1,0 +1,16 @@
+#pragma once
+#include <SDL3/SDl.h>
+class Tile
+{
+	static bool CompareColors(SDL_Color& col1, SDL_Color& col2);
+
+
+public:
+	bool Walkable;
+	SDL_Texture* Texture;
+	SDL_FRect Rect;
+	void Configure(SDL_Color& color, float x, float y, float size, SDL_Texture* textures[]);
+
+
+};
+

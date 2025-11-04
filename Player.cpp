@@ -1,15 +1,15 @@
 #include "Player.h"
 
-void Player::MoveUp()
+void Player::MoveUp(float tileSize)
 {
-	heroRect.y -= TileHeight;
-
-
+	Rect.y -= tileSize;
+	//give the player a rectangle
+	//give the player a sprite
 }
 
-void Player::MoveDown()
+void Player::MoveDown(float tileSize)
 {
-
+	Rect.y -= tileSize;
 
 
 }
