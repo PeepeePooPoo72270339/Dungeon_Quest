@@ -118,7 +118,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     {
         for (int y = 0; y < GridSizeY; y++) 
         {
-            SDL_RenderTexture(renderer, Game->Tiles[x][y].Texture, NULL, &Game->Tiles[x][y].Rect);
+            //SDL_RenderTexture(renderer, Game->Tiles[x][y].Texture, NULL, &Game->Tiles[x][y].Rect);
         
 
 

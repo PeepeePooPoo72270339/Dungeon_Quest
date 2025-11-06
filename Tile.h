@@ -2,10 +2,11 @@
 #include <SDL3/SDl.h>
 class Tile
 {
-	static bool CompareColors(SDL_Color& col1, SDL_Color& col2);
-
+	//
+	
 
 public:
+	static bool CompareColors(SDL_Color& col1, SDL_Color& col2);
 	bool Walkable;
 	SDL_Texture* Texture;
 	SDL_FRect Rect;
