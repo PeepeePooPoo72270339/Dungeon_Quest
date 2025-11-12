@@ -7,8 +7,8 @@
 #include "DungeonGame.h"
 using namespace std;
 
-const int resX = 800;
-const int resY = 600;
+const int resX = 1000;
+const int resY = 1000;
 const int GridSizeX = 10;
 const int GridSizeY = 10;
 const float TileSize = resY / GridSizeX;
@@ -59,6 +59,7 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     Game->LoadTextures(renderer);
     const char* room = "Data/Rooms/Room01.bmp";
     Game->LoadRoom(room);
+    
 
 
 
@@ -118,8 +119,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     {
         for (int y = 0; y < GridSizeY; y++) 
         {
-            //SDL_RenderTexture(renderer, Game->Tiles[x][y].Texture, NULL, &Game->Tiles[x][y].Rect);
-        
+            SDL_RenderTexture(renderer, Game->Tiles[x][y].Texture, NULL, &Game->Tiles[x][y].Rect);
 
 
         }
