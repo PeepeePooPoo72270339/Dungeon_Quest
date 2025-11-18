@@ -15,20 +15,26 @@ bool Tile::CompareColors(SDL_Color& col1, SDL_Color& col2) //parse BMP file into
 
 void Tile::Configure(SDL_Color& color, float x, float y, float size, SDL_Texture* textures[])
 {
-	if (color.r == 255 && color.g ==255)
+	if (color.r == 236 && color.g ==255 && color.b ==255)
 	{
 		this->Walkable = true;
 
 	}
+	if (color.r == 0 && color.g == 0 && color.b == 0)
+	{
+		this->Walkable = false;
+
+
+	}
 	if (Walkable == true)
 	{
-		this->Texture = textures[1];
+		this->Texture = textures[0];
 
 		this->Rect.w = size;
 		this->Rect.h = size;
-		this->Rect.x = x;
-		this->Rect.y = y;
-
+		this->Rect.x = x * 100;
+		this->Rect.y = y * 100;
+		std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl";
 	
 	
 	/*if (CompareColors(color, color))
@@ -40,20 +46,22 @@ void Tile::Configure(SDL_Color& color, float x, float y, float size, SDL_Texture
 	else
 	{
 		this -> Texture = textures[1];
-	}
+	}  
 
 	
 */
 	}
-	else 
+	
+
+	if (Walkable == false)
 	{
 		this->Texture = textures[1];
-		//std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl;"
 		this->Rect.w = size;
 		this->Rect.h = size;
-		this->Rect.x = x;
-		this->Rect.y = y;
+		this->Rect.x = x * 100;  // texture positin must be set at rectangle or somehow instaniate multiple tiles
+		this->Rect.y = y * 100;
 		std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl";
+
 	}
 
 	

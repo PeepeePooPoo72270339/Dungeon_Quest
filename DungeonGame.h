@@ -17,6 +17,7 @@ class DungeonGame
 public:
 	DungeonGame(float tileSizeX, float tileSizeY);
 	~DungeonGame();
+	void Update(float DeltaTime);
 	void LoadTextures(SDL_Renderer* renderer);
 	Player* Hero;
 	void LoadRoom(const char* file = "Data/Rooms/Room01.bmp");

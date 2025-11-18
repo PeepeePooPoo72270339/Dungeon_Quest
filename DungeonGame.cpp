@@ -15,6 +15,10 @@ DungeonGame::~DungeonGame()
 
 }
 
+void DungeonGame::Update(float DeltaTime)
+{
+}
+
 
 
 void DungeonGame::LoadTextures(SDL_Renderer* renderer)
@@ -22,8 +26,8 @@ void DungeonGame::LoadTextures(SDL_Renderer* renderer)
 	this->Hero = new Player;
 	//Load all textures
 	this->Hero->Texture = IMG_LoadTexture(renderer, path_Hero.c_str());
-	this->Hero->Rect.x = 0;
-	this->Hero->Rect.y = 0;
+	this->Hero->Rect.x = 100;
+	this->Hero->Rect.y = 100;
 	this->Hero->Rect.w = tileSizeX;
 	this->Hero->Rect.h = tileSizeY;
 	for (int i = 0; i <2; i++) 
@@ -49,9 +53,9 @@ void DungeonGame::LoadRoom(const char* file)// parse the BMP file into here - su
 	Wall.r = 255;
 	Wall.g = 255; // Creates black texture and parses it into col2 on the tile
 	Wall.b = 255;
-	for (int y = 1; y < surface->h; y++) 
+	for (int y = 0; y <RoomSize && y < surface->h; y++) 
 	{
-		for (int x = 1; x < surface->w; x++)
+		for (int x = 0; x <RoomSize && x < surface->w; x++)
 		{
 			Uint8* pixel = static_cast<Uint8*>(surface->pixels) + y * surface->pitch + x * bpp;
 			SDL_GetRGB(*reinterpret_cast<Uint32*>(pixel), pixelDetails, NULL, &col.r, &col.g, &col.b); // gets RGB value of pixels to be interpreted by game
@@ -59,7 +63,6 @@ void DungeonGame::LoadRoom(const char* file)// parse the BMP file into here - su
 			this->Tiles[x][y].CompareColors(col,Wall); //Managed to fetch color, Just need fix up col2
 			//convert the string into a texture file
 			this->Tiles[x][y].Configure(col, x, y, tileSizeX, this->CarpetTextures);
-
 		};
 	
 
@@ -67,6 +70,10 @@ void DungeonGame::LoadRoom(const char* file)// parse the BMP file into here - su
 	}
 
 
+
+
+
+	//for (int y = 0; y < RoomSize && y < surface->h; y++)
 
 
 }
