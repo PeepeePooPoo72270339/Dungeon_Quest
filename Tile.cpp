@@ -13,54 +13,30 @@ void Tile::Configure(SDL_Color& color, float x, float y, float size, SDL_Texture
 	if (CompareColors(color, Wall))
 	{
 		Walkable = false;
-
+		this->Texture = nullptr;
 
 	}
 	else
 	{
 		Walkable = true;
-
-
-	}
-
-
-	if (Walkable == true)
-	{
-		this->Texture = textures[0];
-
-		this->Rect.w = size;
-		this->Rect.h = size;
-		this->Rect.x = x * 100;
-		this->Rect.y = y * 100;
-		std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl";
-	
-	
-	/*if (CompareColors(color, color))
-	{
-		this->Texture = textures[1];    // test for color comparing (doesn't work)
-
-
-	}
-	else
-	{
-		this -> Texture = textures[1];
-	}  
-
-	
-*/
-	}
-	
-
-	if (Walkable == false)
-	{
-		this->Texture = nullptr;
-		this->Rect.w = size;
-		this->Rect.h = size;
-		this->Rect.x = x * 100;  // texture positin must be set at rectangle or somehow instaniate multiple tiles
-		this->Rect.y = y * 100;
-		//std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl"; (re-use this if tiles ever need to be tested again)
+		this->Texture = textures[1];
 
 	}
 
+	/*this->Rect.w = size;
+	this->Rect.h = size;
+	this->Rect.x = x * 100;
+	this->Rect.y = y * 100;
+	*/
+	SDL_FRect rect;
+	rect.x = x * size;
+	rect.y = y * size;
+	rect.w = size;
+	rect.h = size;
+	this->Rect = rect;
+
+	std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl";
+
+	
 	
 }

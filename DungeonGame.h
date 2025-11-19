@@ -20,7 +20,7 @@ public:
 	void Update(float DeltaTime);
 	void LoadTextures(SDL_Renderer* renderer);
 	Player* Hero;
-	void LoadRoom(const char* file = "Data/Rooms/Room01.bmp");
+	void LoadRoom(const char* file = "Data/Rooms/Room04.bmp");
 	Tile Tiles[RoomSize][RoomSize];
 	SDL_Texture* CarpetTextures[2];
 	

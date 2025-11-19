@@ -5,6 +5,7 @@
 #include <SDL3_image/SDL_image.h>
 #include "Player.h"
 #include "DungeonGame.h"
+#include <iostream>
 using namespace std;
 
 const int resX = 1000;
@@ -59,9 +60,13 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 
     Game = new DungeonGame(TileSize, TileSize);
     Game->LoadTextures(renderer);
-    const char* room = "Data/Rooms/Room01.bmp";
+    const char* room = "Data/Rooms/Room05.bmp";
     Game->LoadRoom(room);
-    
+    //get nearest walkable tile
+    // set player pos to that tile
+
+    // this movement works just needs to fire off at button press
+
 
 
 
@@ -80,19 +85,17 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         // keyboard events    
         if (event->key.scancode == SDL_SCANCODE_W)
         {
-            Game->Hero->MoveUp(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_S)
         {
-            Game->Hero->MoveDown(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_A)
         {
-            Game->Hero->MoveLeft(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_D)
         {
-            Game->Hero->MoveRight(TileSize);
+
+            //std::cout << "Player X:" << Game->Hero->Rect.x << std::endl;
         }
 
     }

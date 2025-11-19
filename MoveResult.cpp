@@ -13,6 +13,8 @@ MoveResult::MoveResult(Tile* n)
 
 MoveResult::~MoveResult()
 {
+
+
 }
 
 Tile* MoveResult::GetTile()
