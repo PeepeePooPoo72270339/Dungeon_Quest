@@ -5,7 +5,6 @@
 #include <SDL3_image/SDL_image.h>
 #include "Player.h"
 #include "DungeonGame.h"
-#include <iostream>
 using namespace std;
 
 const int resX = 1000;
@@ -60,13 +59,9 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 
     Game = new DungeonGame(TileSize, TileSize);
     Game->LoadTextures(renderer);
-    const char* room = "Data/Rooms/Room05.bmp";
+    const char* room = "Data/Rooms/Room01.bmp";
     Game->LoadRoom(room);
-    //get nearest walkable tile
-    // set player pos to that tile
-
-    // this movement works just needs to fire off at button press
-
+    
 
 
 
@@ -85,17 +80,19 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         // keyboard events    
         if (event->key.scancode == SDL_SCANCODE_W)
         {
+            Game->Hero->MoveUp(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_S)
         {
+            Game->Hero->MoveDown(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_A)
         {
+            Game->Hero->MoveLeft(TileSize);
         }
         if (event->key.scancode == SDL_SCANCODE_D)
         {
-
-            //std::cout << "Player X:" << Game->Hero->Rect.x << std::endl;
+            Game->Hero->MoveRight(TileSize);
         }
 
     }
@@ -138,38 +135,6 @@ SDL_AppResult SDL_AppIterate(void* appstate)
 
     }
     SDL_RenderTexture(renderer, Game->Hero->Texture, NULL, &Game->Hero->Rect);
-    // Ensure DungeonGame.h is included
-    #include "DungeonGame.h"
-
-    // Inside SDL_AppInit, initialize the Hero member
-    SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
-    {
-        SDL_SetAppMetadata(ProjectName, "1.0", "");
-
-        if (!SDL_Init(SDL_INIT_VIDEO)) {
-            SDL_Log("Couldn't initialize SDL: %s", SDL_GetError());
-            return SDL_APP_FAILURE;
-        }
-
-        if (!SDL_CreateWindowAndRenderer(ProjectName, resX, resY, 0, &window, &renderer)) {
-            SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
-            return SDL_APP_FAILURE;
-        }
-
-        // Initialize the DungeonGame instance
-        Game = new DungeonGame(TileSize, TileSize);
-
-        // Initialize the Hero member
-        Game->Hero = new Player();
-        Game->Hero->Texture = nullptr; // Assign a valid texture later
-        Game->Hero->Rect = {0, 0, TileSize, TileSize}; // Example initialization
-
-        Game->LoadTextures(renderer);
-        const char* room = "Data/Rooms/Room05.bmp";
-        Game->LoadRoom(room);
-
-        return SDL_APP_CONTINUE;
-    }
     // should fetch every single game object and render them depending on sprite
 
 
