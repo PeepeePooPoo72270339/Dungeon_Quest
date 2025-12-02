@@ -1,34 +1,62 @@
 #include "Player.h"
+#include <iostream>
 
-void Player::MoveUp(float tileSize)
+void Player::MoveUp()
 {
-	//Rect.y -= tileSize;
-	//give the player a rectangle
-	//give the player a sprite
-    //this->Rect.x = Game->Tiles[1][1].Rect.x;
-	this->Rect.x = 0 ; //get the next tile x position
+	//tile at position (Player position y -1) 
+	//move if walkable
+	//Game->Tile[][] return walkable. if true, then walk
+	CoordinateY -= 1;
+	//this->tile[1][1];
+
+
+	//first, check the bool on the tile above then only fire off if the tile is walkable
+
+	//std::cout << "Player at position (" << CoordinateX << "," << CoordinateY << ") <<std::endl";
+}
+
+void Player::MoveDown()
+{
+	CoordinateY += 1;
+	//std::cout << "Player at position (" << CoordinateX << "," << CoordinateY << ") <<std::endl";
 
 }
 
-void Player::MoveDown(float tileSize)
+void Player::MoveLeft()
 {
+
+	CoordinateX -= 1;
+}
+
+void Player::MoveRight()
+{
+	CoordinateX += 1;
 
 
 
 }
 
-void Player::MoveLeft(float tileSize)
+void Player::Setlocation()
 {
 
+	Rect.y = CoordinateY * 100;
+	Rect.x = CoordinateX * 100;
 
 }
 
-void Player::MoveRight(float tileSize)
+void Player::StartLocation()
 {
-
-
-
+	CoordinateX = 5;
+	CoordinateY = 5;
 
 }
+
+void Player::GetPlayerTile()
+{
+   //this->PlayerTile[][] = CoordinateX and Coordinate y;
+
+}
+
+
 
 //Maybe add some player customization for the player

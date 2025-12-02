@@ -13,30 +13,62 @@ void Tile::Configure(SDL_Color& color, float x, float y, float size, SDL_Texture
 	if (CompareColors(color, Wall))
 	{
 		Walkable = false;
-		this->Texture = nullptr;
-
 	}
 	else
 	{
 		Walkable = true;
-		this->Texture = textures[1];
-
 	}
 
-	/*this->Rect.w = size;
+
+	if (Walkable == true)
+	{
+		this->Texture = textures[0];
+	}
+	
+
+	if (Walkable == false)
+	{
+		this->Texture = nullptr;
+		//std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl"; (re-use this if tiles ever need to be tested again)
+	}
+	this->Rect.w = size;
 	this->Rect.h = size;
-	this->Rect.x = x * 100;
-	this->Rect.y = y * 100;
-	*/
-	SDL_FRect rect;
-	rect.x = x * size;
-	rect.y = y * size;
-	rect.w = size;
-	rect.h = size;
-	this->Rect = rect;
+	this->Rect.x = x * size;
+	this->Rect.y = y * size;
 
-	std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl";
-
-	
-	
+	///std::cout << "Tile configured at position (" << x << "," << y << ") <<std::endl";
 }
+
+void Tile::SetCoordinate(float Tilex, float Tiley)
+{
+	//std::cout << "tile at position (" << Tilex << "," << Tiley << ") <<std::endl";
+	this->TileTrackerX;
+	this->TileTrackerY = Tiley;
+	this->TileTrackerX = Tilex;
+
+}
+
+void Tile::GetNeighbour(float current, float dir)
+{
+
+	// tile - dir to get a horizontal tile
+
+
+
+}
+
+// F value stuff for pathfinding 
+void Tile::GetFValue()
+{
+	this->Fvalue = this->Gvalue + this->Hvalue;
+
+
+}
+
+void Tile::GetGValue()
+{
+
+	
+
+}
+

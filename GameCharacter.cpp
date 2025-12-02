@@ -52,6 +52,13 @@ bool GameCharacter::GetIsAlive()
 	return false;
 }
 
+bool GameCharacter::TryMove()
+{
+	//Tile* current = &TileGrid[CoordinateX][CoordinateY];
+	//Tile* Neighbour = current->GetNeighbour();
+	return false;
+}
+
 SDL_FRect* GameCharacter::GetRect()
 {
 	return nullptr;

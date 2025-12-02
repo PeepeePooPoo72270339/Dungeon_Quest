@@ -2,12 +2,9 @@
 #include <SDL3_image/SDL_image.h>
 #include "Pickup.h"
 #include "Tile.h"
-#include "Player.h"
-class GameCharacter :
-	public Player
+class GameCharacter
 {
 public:
-	Player* Hero;
 	GameCharacter(); //constructor, called when created
 	~GameCharacter();//destructor , called when destoroyed
 	virtual void Attack(GameCharacter& other);
@@ -16,10 +13,15 @@ public:
 	virtual void collect(Pickup& pickup);
 	virtual bool CanMoveBetweenRooms();
 	bool GetIsAlive();
+	bool TryMove();
 	SDL_FRect* GetRect();
 	SDL_FRect Rect;
 	SDL_Texture* Texture;
-	//DungeonGame* game;
+	int CoordinateX;
+	int CoordinateY;
+	Tile* CharacterTile;
+	Tile* NeighbourTile;
+
 
 private:
 

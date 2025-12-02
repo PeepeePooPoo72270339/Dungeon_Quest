@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL3/SDl.h>
+
 class Tile
 {
 	//
@@ -11,6 +12,16 @@ public:
 	SDL_Texture* Texture;
 	SDL_FRect Rect;
 	void Configure(SDL_Color& color, float x, float y, float size, SDL_Texture* textures[]);
+	int TileTrackerX;
+	int TileTrackerY;
+	void SetCoordinate(float Tilex, float Tiley);
+	void GetNeighbour(float current, float dir);
+	bool ReturnWalkable(bool CanBeWalkedOn);
+	int Gvalue;
+	int Hvalue;
+	int Fvalue;
+	void GetFValue();
+	void GetGValue();
 
 
 };

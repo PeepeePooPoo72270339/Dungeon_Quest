@@ -5,8 +5,10 @@
 #include "GameCharacter.h"
 #include "Player.h"
 #include "Tile.h"
+#include "Minotaur.h"
 
 const static std::string path_Hero = "Textures/Hero_sword.png";
+const static std::string path_Minotaur = "Textures/Minotaur.png";
 const static std::string path_Tiles[] = {"Textures/Tile_carpet_base.bmp", "Textures/Tile_carpet_blood_1.bmp", "Textures/Tile_carpet_bones.bmp"};
 enum Direction{North, East, South, West};
 const static int RoomSize = 10;
@@ -20,7 +22,10 @@ public:
 	void Update(float DeltaTime);
 	void LoadTextures(SDL_Renderer* renderer);
 	Player* Hero;
-	void LoadRoom(const char* file = "Data/Rooms/Room04.bmp");
+	Minotaur* Boss;
+	void LoadRoom(const char* file = "Data/Rooms/Room01.bmp");
+	void LoadRoom(int x, int y);
+
 	Tile Tiles[RoomSize][RoomSize];
 	SDL_Texture* CarpetTextures[2];
 	
