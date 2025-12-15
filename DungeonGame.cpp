@@ -30,8 +30,7 @@ void DungeonGame::LoadTextures(SDL_Renderer* renderer)
 	this->Hero->Texture = IMG_LoadTexture(renderer, path_Hero.c_str());
 	this->Boss->Rect.w = tileSizeX;
 	this->Boss->Rect.h = tileSizeY;
-	this->Boss->Rect.x = 100;
-	this->Boss->Rect.y = 100;
+
 	this->Hero->Rect.w = tileSizeX;
 	this->Hero->Rect.h = tileSizeY;
 
