@@ -5,5 +5,6 @@ class Minotaur :
 {
 public:
     Tile* BossTile;
+    void PathfindMoveX();
 };
 
