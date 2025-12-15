@@ -170,7 +170,12 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     Game->Update(deltaTime);
     Game->Hero->Setlocation();
 
-
+    //Setup for pathfinding monster and the variable related to it
+    int PathfindMonsterX;
+    int PathfindMonsterY;
+    PathfindMonsterX = Game->Boss->CoordinateX;
+    PathfindMonsterY = Game->Boss->CoordinateY;
+    std: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
 
 
     // get the tile from above, check if walkable
