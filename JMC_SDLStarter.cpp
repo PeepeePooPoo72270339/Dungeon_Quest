@@ -60,20 +60,8 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
-    Game = new DungeonGame(TileSize, TileSize);
-    Game->LoadTextures(renderer);
-    const char* room = "Data/Rooms/Room01.bmp";
-    const int numRoomsX = 4;
-    const int numRoomsY = 4;
-    int DunegonLayout[numRoomsX][numRoomsY];
-    const char* roomFiles[] =
-    { 
-        "Data/Rooms/Room01.bmp",
-        "Data/Rooms/Room02.bmp",
-        "Data/Rooms/Room3.bmp"
-        
-    };
-    Game->LoadRoom(room);
+    Game = new DungeonGame(TileSize, TileSize, GridSizeX, GridSizeY, renderer);
+
 
 
 
@@ -102,7 +90,7 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
             if (Game->Tiles[PlayerCoordinateX][PlayerCoordinateY - 1].Walkable) // parse the tile walkable into this 
             {
                 Game->Hero->MoveUp();
-
+                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
             }
 
 
@@ -114,7 +102,7 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
             if (Game->Tiles[PlayerCoordinateX][PlayerCoordinateY + 1].Walkable)
             {
                 Game->Hero->MoveDown();
-
+                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
             }
             else 
             {
@@ -130,7 +118,7 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
             if (Game->Tiles[PlayerCoordinateX - 1][PlayerCoordinateY].Walkable) 
             {
                 Game->Hero->MoveLeft();
-
+                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
             }
  
         }
@@ -140,6 +128,7 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
             if (Game->Tiles[PlayerCoordinateX + 1][PlayerCoordinateY].Walkable)
             {
                 Game->Hero->MoveRight();
+                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
             }
 
         }
@@ -159,23 +148,6 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
     Think of this like Unity's Update() loop */
 SDL_AppResult SDL_AppIterate(void* appstate)
 {
-    int PlayerCoordinateX;
-    int PlayerCoordinateY;
-    PlayerCoordinateX = Game->Hero->CoordinateX;
-    PlayerCoordinateY = Game->Hero->CoordinateY;
-    //Delta Time stuff (might need some fixing though)
-    last = now;
-    now = SDL_GetPerformanceCounter();
-    double deltaTime = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
-    Game->Update(deltaTime);
-    Game->Hero->Setlocation();
-
-    //Setup for pathfinding monster and the variable related to it
-    int PathfindMonsterX;
-    int PathfindMonsterY;
-    PathfindMonsterX = Game->Boss->CoordinateX;
-    PathfindMonsterY = Game->Boss->CoordinateY;
-    std: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
 
 
     // get the tile from above, check if walkable
@@ -186,24 +158,12 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     SDL_RenderClear(renderer);  /* start with a blank canvas. */
 
     // Your Update code goes here.
-   
-    //Draw the tiles here
-    for (int x = 0; x < GridSizeX; x++) 
-    {
-        for (int y = 0; y < GridSizeY; y++) 
-        {
-            SDL_RenderTexture(renderer, Game->Tiles[x][y].Texture, NULL, &Game->Tiles[x][y].Rect);
 
-
-        }
-    
-
-
-    }
-    SDL_RenderTexture(renderer, Game->Hero->Texture, NULL, &Game->Hero->Rect);
-    SDL_RenderTexture(renderer, Game->Boss->Texture, NULL, &Game->Boss->Rect);
-    // should fetch every single game object and render them depending on sprite
-
+    //Delta Time stuff (might need some fixing though)
+    last = now;
+    now = SDL_GetPerformanceCounter();
+    double deltaTime = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
+    Game->Update(deltaTime);
 
     SDL_RenderPresent(renderer);  /* put it all on the screen! */
 

@@ -1,12 +1,29 @@
 #include "DungeonGame.h"
 #include <SDL3/SDL.h>
-DungeonGame::DungeonGame(float tileSizeX, float tileSizeY)
+DungeonGame::DungeonGame(float tileSizeX, float tileSizeY, int gridSizeX, int gridSizeY, SDL_Renderer* renderer)
 {
 	this->tileSizeX = tileSizeX;
 	this->tileSizeY = tileSizeY;
+	this->renderer = renderer;
+	this->gridSizeX = gridSizeX;
+	this->gridSizeY = gridSizeY;
 
+	LoadTextures();
+	const char* room = "Data/Rooms/Room01.bmp";
+	const int numRoomsX = 4;
+	const int numRoomsY = 4;
+	int DunegonLayout[numRoomsX][numRoomsY];
+	const char* roomFiles[] =
+	{
+		"Data/Rooms/Room01.bmp",
+		"Data/Rooms/Room02.bmp",
+		"Data/Rooms/Room3.bmp"
+
+	};
+	LoadRoom(room);
 
 }
+
 
 DungeonGame::~DungeonGame()
 {
@@ -17,17 +34,44 @@ DungeonGame::~DungeonGame()
 
 void DungeonGame::Update(float DeltaTime)
 {
+    Hero->SetLocation(tileSizeX);
+    Boss->SetLocation(tileSizeX);
+	//Game->Boss->PlayerLocation;
+	//std::cout << "monster register player position" << Game->Boss->PlayerLocation << std::endl;
+
+    //Setup for pathfinding monster and the variable related to it
+	int PathfindMonsterX;
+	int PathfindMonsterY;
+	PathfindMonsterX = Boss->CoordinateX;
+	PathfindMonsterY = Boss->CoordinateY;
+	std:: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
+
+	//Draw the tiles here
+	for (int x = 0; x < gridSizeX; x++)
+	{
+		for (int y = 0; y < gridSizeY; y++)
+		{
+			SDL_RenderTexture(renderer, Tiles[x][y].Texture, NULL, &Tiles[x][y].Rect);
+		}
+	}
+	SDL_RenderTexture(renderer, Hero->Texture, NULL, &Hero->Rect);
+	SDL_RenderTexture(renderer, Boss->Texture, NULL, &Boss->Rect);
+	// should fetch every single game object and render them depending on sprite
+
 }
 
 
 
-void DungeonGame::LoadTextures(SDL_Renderer* renderer)
+void DungeonGame::LoadTextures()
 {
+	SDL_ScaleMode scaleMode = SDL_SCALEMODE_NEAREST;
 	this->Boss = new Minotaur;
 	this->Hero = new Player;
 	//Load all textures
 	this->Boss->Texture = IMG_LoadTexture(renderer, path_Minotaur.c_str());
+	SDL_SetTextureScaleMode(this->Boss->Texture, scaleMode);
 	this->Hero->Texture = IMG_LoadTexture(renderer, path_Hero.c_str());
+	SDL_SetTextureScaleMode(this->Hero->Texture, scaleMode);
 	this->Boss->Rect.w = tileSizeX;
 	this->Boss->Rect.h = tileSizeY;
 
@@ -38,8 +82,8 @@ void DungeonGame::LoadTextures(SDL_Renderer* renderer)
 	{
 
 		this->CarpetTextures[i] = IMG_LoadTexture(renderer, path_Tiles[i].c_str()); //there is some kind of problem here that needs to be fixed
-		SDL_ScaleMode scaleMode = SDL_SCALEMODE_NEAREST;
-		SDL_GetTextureScaleMode(this->CarpetTextures[i], &scaleMode);
+
+		SDL_SetTextureScaleMode(this->CarpetTextures[i], scaleMode);
 
 
 	}

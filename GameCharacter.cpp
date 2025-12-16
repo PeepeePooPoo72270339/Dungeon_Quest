@@ -64,3 +64,11 @@ SDL_FRect* GameCharacter::GetRect()
 	return nullptr;
 	//set
 }
+
+void GameCharacter::SetLocation(int tileSize)
+{
+
+	Rect.y = CoordinateY * tileSize;
+	Rect.x = CoordinateX * tileSize;
+
+}

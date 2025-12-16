@@ -15,6 +15,7 @@ public:
 	bool GetIsAlive();
 	bool TryMove();
 	SDL_FRect* GetRect();
+	void SetLocation(int tileSize);
 	SDL_FRect Rect;
 	SDL_Texture* Texture;
 	int CoordinateX;

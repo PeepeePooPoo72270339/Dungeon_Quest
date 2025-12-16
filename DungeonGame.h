@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Tile.h"
 #include "Minotaur.h"
+#include <iostream>
 
 const static std::string path_Hero = "Textures/Hero_sword.png";
 const static std::string path_Minotaur = "Textures/Minotaur.png";
@@ -17,14 +18,15 @@ class DungeonGame
 	//load string into texture array and parse that into texture
 
 public:
-	DungeonGame(float tileSizeX, float tileSizeY);
+	DungeonGame(float tileSizeX, float tileSizeY, int gridSizeX, int gridSizeY, SDL_Renderer* renderer);
 	~DungeonGame();
 	void Update(float DeltaTime);
-	void LoadTextures(SDL_Renderer* renderer);
+	void LoadTextures();
 	Player* Hero;
 	Minotaur* Boss;
 	void LoadRoom(const char* file = "Data/Rooms/Room01.bmp");
 	void LoadRoom(int x, int y);
+
 
 	Tile Tiles[RoomSize][RoomSize];
 	SDL_Texture* CarpetTextures[2];
@@ -32,7 +34,8 @@ public:
 private:
 	float tileSizeX;
 	float tileSizeY;
-
-
+	SDL_Renderer* renderer;
+	int gridSizeX;
+	int gridSizeY;
 };
 

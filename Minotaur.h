@@ -6,6 +6,6 @@ class Minotaur :
 public:
     Tile* BossTile;
     void PathfindMoveX();
-    void SetLocation();
+    int PlayerLocation[10][10];
 };
 

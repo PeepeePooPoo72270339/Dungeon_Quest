@@ -24,31 +24,18 @@ void Player::MoveDown()
 
 void Player::MoveLeft()
 {
-
 	CoordinateX -= 1;
 }
 
 void Player::MoveRight()
 {
 	CoordinateX += 1;
-
-
-
-}
-
-void Player::Setlocation()
-{
-
-	Rect.y = CoordinateY * 100;
-	Rect.x = CoordinateX * 100;
-
 }
 
 void Player::StartLocation()
 {
 	CoordinateX = 5;
 	CoordinateY = 5;
-
 }
 
 void Player::GetPlayerTile()
