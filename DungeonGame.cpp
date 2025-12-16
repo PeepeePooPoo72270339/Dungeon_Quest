@@ -37,15 +37,14 @@ void DungeonGame::Update(float DeltaTime)
     Hero->SetLocation(tileSizeX);
     Boss->SetLocation(tileSizeX);
 	//Game->Boss->PlayerLocation;
-	//std::cout << "monster register player position" << Game->Boss->PlayerLocation << std::endl;
-
     //Setup for pathfinding monster and the variable related to it
 	int PathfindMonsterX;
 	int PathfindMonsterY;
 	PathfindMonsterX = Boss->CoordinateX;
 	PathfindMonsterY = Boss->CoordinateY;
-	std:: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
-
+	//std:: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
+	std::cout << "monster register player position" << Boss->PlayerLocation[10][6] << std::endl;
+	
 	//Draw the tiles here
 	for (int x = 0; x < gridSizeX; x++)
 	{
@@ -136,6 +135,43 @@ void DungeonGame::LoadRoom(int x, int y)
 
 
 
+}
+
+void DungeonGame::HandleInput(Direction dir)
+{
+	if(dir == North)
+	{
+		if (Tiles[Hero->CoordinateX][Hero->CoordinateY - 1].Walkable) // parse the tile walkable into this 
+		{
+			Hero->MoveUp();
+			std::cout << "Player location" << Hero->CoordinateX << "," << Hero->CoordinateY << std::endl;
+		}
+	}
+	if(dir == South)
+	{
+		if (Tiles[Hero->CoordinateX][Hero->CoordinateY + 1].Walkable)
+		{
+			Hero->MoveDown();
+			std::cout << "Player location" << Hero->CoordinateX << "," << Hero->CoordinateY << std::endl;
+		}
+	}
+	if (dir == East) 
+	{
+		if (Tiles[Hero->CoordinateX + 1][Hero->CoordinateY].Walkable)
+		{
+			Hero->MoveRight();
+			std::cout << "Player location" << Hero->CoordinateX << "," << Hero->CoordinateY << std::endl;
+		}
+	}
+
+	if (dir == West)
+	{
+		if (Tiles[Hero->CoordinateX - 1][Hero->CoordinateY].Walkable)
+		{
+			Hero->MoveLeft();
+			std::cout << "Player location" << Hero->CoordinateX << "," << Hero->CoordinateY << std::endl;
+		}
+	}
 }
 
 

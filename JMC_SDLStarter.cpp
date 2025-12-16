@@ -71,10 +71,7 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 /* This function runs when a new event (mouse input, keypresses, etc) occurs. */
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 {
-    int PlayerCoordinateX;
-    int PlayerCoordinateY;
-    PlayerCoordinateX = Game->Hero->CoordinateX;
-    PlayerCoordinateY = Game->Hero->CoordinateY;
+
     if (event->type == SDL_EVENT_QUIT) {
         return SDL_APP_SUCCESS;  /* end the program, reporting success to the OS. */
     }
@@ -85,51 +82,19 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         // keyboard events    
         if (event->key.scancode == SDL_SCANCODE_W)
         {
-
-            bool CanWalkUp = false;
-            if (Game->Tiles[PlayerCoordinateX][PlayerCoordinateY - 1].Walkable) // parse the tile walkable into this 
-            {
-                Game->Hero->MoveUp();
-                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
-            }
-
-
+            Game->HandleInput(North);
         }
         if (event->key.scancode == SDL_SCANCODE_S)
         {
-
-            bool CanWalkDown = Game->Tiles[PlayerCoordinateX][PlayerCoordinateY + 1].Walkable;
-            if (Game->Tiles[PlayerCoordinateX][PlayerCoordinateY + 1].Walkable)
-            {
-                Game->Hero->MoveDown();
-                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
-            }
-            else 
-            {
-
-            }
- 
-
+            Game->HandleInput(South);
         }
         if (event->key.scancode == SDL_SCANCODE_A)
         {
-            bool CanWalkLeft = false;
-
-            if (Game->Tiles[PlayerCoordinateX - 1][PlayerCoordinateY].Walkable) 
-            {
-                Game->Hero->MoveLeft();
-                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
-            }
- 
+            Game->HandleInput(West);
         }
         if (event->key.scancode == SDL_SCANCODE_D)
         {
-            bool CanWalkRight = false;
-            if (Game->Tiles[PlayerCoordinateX + 1][PlayerCoordinateY].Walkable)
-            {
-                Game->Hero->MoveRight();
-                std::cout << "Player location" << PlayerCoordinateX << "," << PlayerCoordinateY << std::endl;
-            }
+            Game->HandleInput(East);
 
         }
 

@@ -26,6 +26,7 @@ public:
 	Minotaur* Boss;
 	void LoadRoom(const char* file = "Data/Rooms/Room01.bmp");
 	void LoadRoom(int x, int y);
+	void HandleInput(Direction dir);
 
 
 	Tile Tiles[RoomSize][RoomSize];
