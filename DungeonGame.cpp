@@ -36,6 +36,7 @@ void DungeonGame::Update(float DeltaTime)
 {
     Hero->SetLocation(tileSizeX);
     Boss->SetLocation(tileSizeX);
+	Boss->FindPlayer(Hero->CoordinateX,Hero->CoordinateY);
 	//Game->Boss->PlayerLocation;
     //Setup for pathfinding monster and the variable related to it
 	int PathfindMonsterX;
@@ -43,7 +44,10 @@ void DungeonGame::Update(float DeltaTime)
 	PathfindMonsterX = Boss->CoordinateX;
 	PathfindMonsterY = Boss->CoordinateY;
 	//std:: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
-	std::cout << "monster register player position" << Boss->PlayerLocation[10][6] << std::endl;
+	//std::cout << "Monster register player at position" << Boss->PlayerLocation; << 
+	//std::cout << "monster register player position" << Boss->PlayerLocation[10][6] << std::endl;
+
+
 	
 	//Draw the tiles here
 	for (int x = 0; x < gridSizeX; x++)
