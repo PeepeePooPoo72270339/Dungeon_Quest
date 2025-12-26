@@ -22,12 +22,13 @@ void Minotaur::FindPlayer(int playerX, int playerY)
 	std::cout << std::endl;*/
 
 	//prints the Array for it's own location
-	int n = sizeof(MinotaurLocation) / sizeof(MinotaurLocation[1]); 
+
+	/*int n = sizeof(MinotaurLocation) / sizeof(MinotaurLocation[1]);
 
 	for (int i = 0; i < n; i++) {
 		std::cout << MinotaurLocation[i] << " ";
 	}
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 
 }
 

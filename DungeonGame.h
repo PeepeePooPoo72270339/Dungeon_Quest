@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
@@ -6,7 +7,7 @@
 #include "Player.h"
 #include "Tile.h"
 #include "Minotaur.h"
-#include <iostream>
+
 
 const static std::string path_Hero = "Textures/Hero_sword.png";
 const static std::string path_Minotaur = "Textures/Minotaur.png";

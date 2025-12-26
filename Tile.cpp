@@ -57,18 +57,19 @@ void Tile::GetNeighbour(float current, float dir)
 
 }
 
+void Tile::GetGValue(int gvalue)
+{
+	Gvalue == gvalue;
+}
+
+void Tile::GetHvalue(int hvalue)
+{
+}
+
+
 // F value stuff for pathfinding 
 void Tile::GetFValue()
 {
 	this->Fvalue = this->Gvalue + this->Hvalue;
-
-
-}
-
-void Tile::GetGValue()
-{
-
-	
-
 }
 

@@ -3,7 +3,6 @@
 
 class Tile
 {
-	//
 	
 
 public:
@@ -21,7 +20,8 @@ public:
 	int Hvalue;
 	int Fvalue;
 	void GetFValue();
-	void GetGValue();
+	void GetGValue(int gvalue);
+	void GetHvalue(int hvalue);
 
 
 };
