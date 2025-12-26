@@ -37,6 +37,7 @@ void DungeonGame::Update(float DeltaTime)
     Hero->SetLocation(tileSizeX);
     Boss->SetLocation(tileSizeX);
 	Boss->FindPlayer(Hero->CoordinateX,Hero->CoordinateY);
+	
 	//Game->Boss->PlayerLocation;
     //Setup for pathfinding monster and the variable related to it
 	int PathfindMonsterX;
@@ -46,8 +47,6 @@ void DungeonGame::Update(float DeltaTime)
 	//std:: cout << "Monster at position" << PathfindMonsterX << "," << PathfindMonsterY << std::endl;
 	//std::cout << "Monster register player at position" << Boss->PlayerLocation; << 
 	//std::cout << "monster register player position" << Boss->PlayerLocation[10][6] << std::endl;
-
-
 	
 	//Draw the tiles here
 	for (int x = 0; x < gridSizeX; x++)
@@ -55,8 +54,17 @@ void DungeonGame::Update(float DeltaTime)
 		for (int y = 0; y < gridSizeY; y++)
 		{
 			SDL_RenderTexture(renderer, Tiles[x][y].Texture, NULL, &Tiles[x][y].Rect);
+			Tiles[x][y].GetFValue();
+			// G value is the monster
+			//Tiles[x][y].GetGValue();
+			//H value is the player
+			int H = Hero->CoordinateX - Tiles[5][5].TileTrackerX + Hero->CoordinateY - Tiles[5][5].TileTrackerY;
+			//Tiles[x][y].GetHvalue(H);
+			Tiles[5][5].GetHvalue(H);
+			std::cout << "Tile H value =" << H << std::endl;
 		}
 	}
+
 	SDL_RenderTexture(renderer, Hero->Texture, NULL, &Hero->Rect);
 	SDL_RenderTexture(renderer, Boss->Texture, NULL, &Boss->Rect);
 	// should fetch every single game object and render them depending on sprite

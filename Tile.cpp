@@ -64,6 +64,7 @@ void Tile::GetGValue(int gvalue)
 
 void Tile::GetHvalue(int hvalue)
 {
+	Hvalue == hvalue;
 }
 
 
