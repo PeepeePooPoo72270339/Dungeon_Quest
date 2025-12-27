@@ -27,8 +27,5 @@ public:
 private:
 
 	bool isAlive = true;
-	
-
-
 };
 

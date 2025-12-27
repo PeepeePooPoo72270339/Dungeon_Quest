@@ -34,9 +34,8 @@ void Minotaur::FindPlayer(int playerX, int playerY)
 
 void Minotaur::FindPath()
 {
-	//get the closest tile with the lowest f vaue
-
-
+	//get the closest tile with the lowest f value
+	CharacterTile;
 }
 
 

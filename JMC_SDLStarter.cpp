@@ -95,6 +95,11 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         if (event->key.scancode == SDL_SCANCODE_D)
         {
             Game->HandleInput(East);
+        }
+        if (event->key.scancode == SDL_SCANCODE_K) 
+        {
+            //Runs the script for minotaur pathfinding
+            Game->Boss->PathfindMoveX();
 
         }
 

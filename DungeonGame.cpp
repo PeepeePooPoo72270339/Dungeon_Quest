@@ -1,5 +1,7 @@
 #include "DungeonGame.h"
 #include <SDL3/SDL.h>
+#include <vector>
+#include <algorithm>
 DungeonGame::DungeonGame(float tileSizeX, float tileSizeY, int gridSizeX, int gridSizeY, SDL_Renderer* renderer)
 {
 	this->tileSizeX = tileSizeX;
@@ -37,7 +39,6 @@ void DungeonGame::Update(float DeltaTime)
     Hero->SetLocation(tileSizeX);
     Boss->SetLocation(tileSizeX);
 	Boss->FindPlayer(Hero->CoordinateX,Hero->CoordinateY);
-	
 	//Game->Boss->PlayerLocation;
     //Setup for pathfinding monster and the variable related to it
 	int PathfindMonsterX;
@@ -70,7 +71,18 @@ void DungeonGame::Update(float DeltaTime)
 			Tiles[x][y].GetFValue();
 		}
 	}
+	//Get F values of the nearest tiles for boss
+	int North = Tiles[Boss->CoordinateX][Boss->CoordinateY - 1].Fvalue;
+	int South = Tiles[Boss->CoordinateX][Boss->CoordinateY + 1].Fvalue;
+	int West = Tiles[Boss->CoordinateX + 1][Boss->CoordinateY].Fvalue;
+	int East = Tiles[Boss->CoordinateX - 1][Boss->CoordinateY].Fvalue;
+	//Stores all directions into a vector
+	std::vector<int> Directions = {North, South, East, West};
+	//Get the one with the lowest F value
+	auto LowF = std::min_element(Directions.begin(), Directions.end());
+	int LowestFValue = *LowF;
 
+	//Draw characters here
 	SDL_RenderTexture(renderer, Hero->Texture, NULL, &Hero->Rect);
 	SDL_RenderTexture(renderer, Boss->Texture, NULL, &Boss->Rect);
 	// should fetch every single game object and render them depending on sprite
@@ -172,6 +184,7 @@ void DungeonGame::HandleInput(Direction dir)
 			std::cout << "Player location" << Hero->CoordinateX << "," << Hero->CoordinateY << std::endl;
 		}
 	}
+
 }
 
 
