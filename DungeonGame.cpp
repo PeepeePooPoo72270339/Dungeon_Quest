@@ -55,19 +55,19 @@ void DungeonGame::Update(float DeltaTime)
 		{
 			SDL_RenderTexture(renderer, Tiles[x][y].Texture, NULL, &Tiles[x][y].Rect);
 			// G value is the monster's distance from the tile
-			int Gx = std::abs(Boss->CoordinateX - Tiles[5][5].TileTrackerX);
-			int Gy = std::abs(Boss->CoordinateY - Tiles[5][5].TileTrackerY);
+			int Gx = std::abs(Boss->CoordinateX - Tiles[x][y].TileTrackerX);
+			int Gy = std::abs(Boss->CoordinateY - Tiles[x][y].TileTrackerY);
 			int G = Gx + Gy;
 			Tiles[x][y].GetGValue(G);
 		
 			//H value is the player's distance from the tile
 			// distance between Player and tile Y
-			int Hx = std::abs(Hero->CoordinateX - Tiles[5][5].TileTrackerX);
-			int Hy = std::abs(Hero->CoordinateY - Tiles[5][5].TileTrackerY);
+			int Hx = std::abs(Hero->CoordinateX - Tiles[x][y].TileTrackerX);
+			int Hy = std::abs(Hero->CoordinateY - Tiles[x][y].TileTrackerY);
 			int H = Hx + Hy;
-			//Tiles[x][y].GetHvalue(H);
-			Tiles[5][5].GetHvalue(H);
-			Tiles[5][5].GetFValue();
+			Tiles[x][y].GetHvalue(H);
+			// Adds G and H value to get F value
+			Tiles[x][y].GetFValue();
 		}
 	}
 
@@ -97,12 +97,8 @@ void DungeonGame::LoadTextures()
 
 	for (int i = 0; i <2; i++) 
 	{
-
 		this->CarpetTextures[i] = IMG_LoadTexture(renderer, path_Tiles[i].c_str()); //there is some kind of problem here that needs to be fixed
-
 		SDL_SetTextureScaleMode(this->CarpetTextures[i], scaleMode);
-
-
 	}
 
 }
@@ -132,27 +128,14 @@ void DungeonGame::LoadRoom(const char* file)// parse the BMP file into here - su
 			//Get the neighbouring tiles here
 			
 		};
-	
-
-
 	}
-
-	
-
-
 	//for (int y = 0; y < RoomSize && y < surface->h; y++)
-
-
 }
 
 void DungeonGame::LoadRoom(int x, int y)
 {
-
 	//int index = DungeonLayout[x][y];
 	//const char* roomPath = RoomPaths[index].c_str();
-
-
-
 }
 
 void DungeonGame::HandleInput(Direction dir)
@@ -181,7 +164,6 @@ void DungeonGame::HandleInput(Direction dir)
 			std::cout << "Player location" << Hero->CoordinateX << "," << Hero->CoordinateY << std::endl;
 		}
 	}
-
 	if (dir == West)
 	{
 		if (Tiles[Hero->CoordinateX - 1][Hero->CoordinateY].Walkable)
