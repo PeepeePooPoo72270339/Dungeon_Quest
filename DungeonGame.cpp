@@ -90,10 +90,14 @@ void DungeonGame::Update(float DeltaTime)
 	{
 		// Boss move down
 	}
-	if () 
+	if (LowestFValue = East) 
 	{
-	}
 
+	}
+	if (LowestFValue = West)
+	{
+
+	}
 
 	//Draw characters here
 	SDL_RenderTexture(renderer, Hero->Texture, NULL, &Hero->Rect);
