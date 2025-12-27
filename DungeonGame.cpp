@@ -55,7 +55,10 @@ void DungeonGame::Update(float DeltaTime)
 		{
 			SDL_RenderTexture(renderer, Tiles[x][y].Texture, NULL, &Tiles[x][y].Rect);
 			// G value is the monster's distance from the tile
-			Tiles[x][y].GetGValue();
+			int Gx = std::abs(Boss->CoordinateX - Tiles[5][5].TileTrackerX);
+			int Gy = std::abs(Boss->CoordinateY - Tiles[5][5].TileTrackerY);
+			int G = Gx + Gy;
+			Tiles[x][y].GetGValue(G);
 		
 			//H value is the player's distance from the tile
 			// distance between Player and tile Y
@@ -64,8 +67,7 @@ void DungeonGame::Update(float DeltaTime)
 			int H = Hx + Hy;
 			//Tiles[x][y].GetHvalue(H);
 			Tiles[5][5].GetHvalue(H);
-			Tiles[x][y].GetFValue();
-			std::cout << "Tile H value =" << H << std::endl;
+			Tiles[5][5].GetFValue();
 		}
 	}
 

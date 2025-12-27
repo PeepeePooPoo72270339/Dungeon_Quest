@@ -59,12 +59,14 @@ void Tile::GetNeighbour(float current, float dir)
 
 void Tile::GetGValue(int gvalue)
 {
-	Gvalue == gvalue;
+	Gvalue = gvalue;
 }
 
 void Tile::GetHvalue(int hvalue)
 {
-	Hvalue == hvalue;
+	this->Hvalue = hvalue;
+	//std::cout << "H value" << hvalue << std::endl;
+	std::cout << "Tile H value =" << this->Hvalue << std::endl;
 }
 
 
@@ -72,5 +74,6 @@ void Tile::GetHvalue(int hvalue)
 void Tile::GetFValue()
 {
 	this->Fvalue = this->Gvalue + this->Hvalue;
+	//std::cout << "Tile H value =" << this->Fvalue << std::endl;
 }
 
