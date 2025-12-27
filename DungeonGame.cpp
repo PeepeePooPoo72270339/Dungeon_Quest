@@ -81,6 +81,19 @@ void DungeonGame::Update(float DeltaTime)
 	//Get the one with the lowest F value
 	auto LowF = std::min_element(Directions.begin(), Directions.end());
 	int LowestFValue = *LowF;
+	//if lowest f value is north, go up
+	if (LowestFValue =North) 
+	{
+		//Boss move up
+	}
+	if (LowestFValue = South)
+	{
+		// Boss move down
+	}
+	if () 
+	{
+	}
+
 
 	//Draw characters here
 	SDL_RenderTexture(renderer, Hero->Texture, NULL, &Hero->Rect);

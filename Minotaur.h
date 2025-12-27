@@ -5,7 +5,7 @@ class Minotaur :
 {
 public:
     Tile* BossTile;
-    void PathfindMoveX();
+    void PathfindMoveUp();
     int PlayerX;
     int PlayerY;
     void FindPlayer(int PlayerX, int PlayerY);

@@ -1,7 +1,7 @@
 #include "Minotaur.h"
 #include <iostream>
 
-void Minotaur::PathfindMoveX()
+void Minotaur::PathfindMoveUp()
 {
 
 
