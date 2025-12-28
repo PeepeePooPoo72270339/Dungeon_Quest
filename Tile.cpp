@@ -73,7 +73,16 @@ void Tile::GetHvalue(int hvalue)
 // F value stuff for pathfinding 
 void Tile::GetFValue()
 {
-	this->Fvalue = this->Gvalue + this->Hvalue;
-	//std::cout << "Tile H value =" << this->Fvalue << std::endl;
+
+	if (Walkable == true)
+	{
+		this->Fvalue = this->Gvalue + this->Hvalue;
+		//std::cout << "Tile H value =" << this->Fvalue << std::endl;
+	}
+	else
+	{
+		this->Fvalue = 10000000;
+		// if tile is unwalkable, the variable is set to a number so high that it'll always be ignored
+	}
 }
 

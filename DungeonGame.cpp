@@ -11,7 +11,7 @@ DungeonGame::DungeonGame(float tileSizeX, float tileSizeY, int gridSizeX, int gr
 	this->gridSizeY = gridSizeY;
 
 	LoadTextures();
-	const char* room = "Data/Rooms/Room01.bmp";
+	const char* room = "Data/Rooms/Room06.bmp";
 	const int numRoomsX = 4;
 	const int numRoomsY = 4;
 	int DunegonLayout[numRoomsX][numRoomsY];
@@ -20,6 +20,7 @@ DungeonGame::DungeonGame(float tileSizeX, float tileSizeY, int gridSizeX, int gr
 		"Data/Rooms/Room01.bmp",
 		"Data/Rooms/Room02.bmp",
 		"Data/Rooms/Room3.bmp"
+		"Data/Rooms/Room06.bmp"
 
 	};
 	LoadRoom(room);
