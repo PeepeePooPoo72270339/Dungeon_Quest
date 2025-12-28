@@ -74,29 +74,33 @@ void DungeonGame::Update(float DeltaTime)
 	//Get F values of the nearest tiles for boss
 	int North = Tiles[Boss->CoordinateX][Boss->CoordinateY - 1].Fvalue;
 	int South = Tiles[Boss->CoordinateX][Boss->CoordinateY + 1].Fvalue;
-	int West = Tiles[Boss->CoordinateX + 1][Boss->CoordinateY].Fvalue;
-	int East = Tiles[Boss->CoordinateX - 1][Boss->CoordinateY].Fvalue;
+	int West = Tiles[Boss->CoordinateX -1][Boss->CoordinateY].Fvalue;
+	int East = Tiles[Boss->CoordinateX + 1][Boss->CoordinateY].Fvalue;
 	//Stores all directions into a vector
 	std::vector<int> Directions = {North, South, East, West};
 	//Get the one with the lowest F value
 	auto LowF = std::min_element(Directions.begin(), Directions.end());
 	int LowestFValue = *LowF;
 	//if lowest f value is north, go up
-	if (LowestFValue =North) 
+	if (LowestFValue ==North) 
 	{
-		//Boss move up
+		Boss->FindPath(1);
+		//std::cout << "Fvalue of North =" << North << std::endl;
 	}
-	if (LowestFValue = South)
+	if (LowestFValue == East)
 	{
-		// Boss move down
+		Boss->FindPath(2);
+		//std::cout << "Fvalue of east =" << East << std::endl;
 	}
-	if (LowestFValue = East) 
+	if (LowestFValue == South)
 	{
-
+		Boss->FindPath(3);
+		//std::cout << "Fvalue of south =" << South << std::endl;
 	}
-	if (LowestFValue = West)
+	if (LowestFValue == West)
 	{
-
+		Boss->FindPath(4);
+		//std::cout << "Fvalue of West =" << West << std::endl;
 	}
 
 	//Draw characters here
@@ -140,6 +144,7 @@ void DungeonGame::LoadRoom(const char* file)// parse the BMP file into here - su
 	SDL_Color col;
 	SDL_Color Wall = { 0,0,0,255 }; // Unwalkable tile
 	this->Hero->StartLocation();
+	this->Boss->SetStartPosition();
 
 
 	for (int y = 0; y <RoomSize && y < surface->h; y++) 
